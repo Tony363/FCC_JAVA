@@ -1,4 +1,4 @@
-package src.my.test;
+package src.sand.box;
 
 public class Bool {
     public static void main(String[] args) {
@@ -7,9 +7,9 @@ public class Bool {
         String c = a;
         String d = c;
 
-        boolean b1 = a == b;
-        boolean b2 = d.equals(b + "!");
-        boolean b3 = !c.equals(a);
+        boolean b1 = a != b;
+        boolean b2 =!d.equals(b + "!");
+        boolean b3 = c.equals(a);
 
         if (b1 && b2 && b3) {
             System.out.println("Success!");
