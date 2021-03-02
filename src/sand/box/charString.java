@@ -1,4 +1,4 @@
-package src.my.test;
+package src.sand.box;
 //H3110 w0r1d 2.0 true
 public class charString{
     public static void main(String[] args) {
