@@ -27,7 +27,6 @@ class BankVaultDoor extends Door {
         System.out.println("Enter Combination:");
         this.Combination = CombinationScanner.next();
     }
-
 }
 
 class HouseFrontDoor extends Door {
