@@ -1,8 +1,18 @@
 package src.sand.box;
 
-class HelloWorld {
-    public static void main(String[] args) {
-        System.out.println("Hello, World!"); 
+class sayHello{
+    sayHello(){
+        System.out.println("Hello World!");
     }
+}
+
+public class helloworld {
+    helloworld(){
+        System.out.println("Hello World!");
+    }
+    public static void main(String[] args) {
+        sayHello hello = new sayHello();
+    }
+
 }
 
