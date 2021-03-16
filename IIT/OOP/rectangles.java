@@ -1,18 +1,30 @@
 package IIT.OOP;
 
 public class rectangles{
-    public static void main(String[] args){
+    private int H,W;
+    rectangles(){
+
+    }
+    public void takeWH(String[] args){
         if (args.length != 2){
-            System.out.println("Please Enter W H:");
-            return ;
+            getWidthHeight input = new getWidthHeight();
+            this.W = input.getWidth();
+            this.H = input.getHeight();
+        } else {
+            this.H = Integer.parseInt(args[0]);
+            this.W = Integer.parseInt(args[1]);
         }
-        int H = Integer.parseInt(args[0]);
-        int W = Integer.parseInt(args[1]);
-        for (int i=0;i<H;i++){
-            for (int j=0;j<W;j++){
-                System.out.printf("*");
-            }
-            System.out.println();
-        }
+    }
+    public int getH(){
+        return this.H;
+    }
+    public int getW(){
+        return this.W;
+    }
+    public static void main(String[] args){
+        rectangles rect = new rectangles();
+        rect.takeWH(args);
+        printRectangle print = new printRectangle(rect);
+        print.printing();
     }
 }
