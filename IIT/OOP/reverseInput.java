@@ -3,18 +3,17 @@ import java.util.Scanner;
 
 public class reverseInput{
     public static void main(String[] args){
-        if (args.length != 1){
-            System.out.println("Please Enter Number of Inputs");
-            return;
+        Scanner scanner = new Scanner(System.in);
+        int []memo = new int[20];
+        int i;
+        for (i=0; i<memo.length; i++){
+            memo[i] = scanner.nextInt();
+            if(memo[i] <= 0 ){
+                break;
+            }
         }
-        int[] memo = new int[Integer.parseInt(args[0])];
-        Scanner s = new Scanner(System.in);
-        for (int i = 0; i < Integer.parseInt(args[0]);i++){
-            int input = s.nextInt();
-            memo[i] = input;
-        }
-        for (int i = 0; i < memo.length;i++){
-            System.out.println(memo[(memo.length-1)-i]);
+        for (; --i>=0;){
+            System.out.println(memo[i]);
         }
     }
 }
