@@ -15,17 +15,26 @@ class Date{
     Date(int year,int month,int day){
         this.setDate(year,month,day);
     }
+    /**
+     * get copy of array internal Date
+     * @return
+     */
     public int[] getDate(){
         return Arrays.copyOf(this.date,this.date.length);
     }
-    int[] getDate(){
+    int[] getDate(String internal){
         return this.date;
     }
-    void setDate(int[] date){
+    void setDate(int[] date,String internal){
         for (int i=0;i<this.date.length;i++){
             this.date[i] = date[i];
         }
     }
+    /**
+     * checks validity of input array of dates and copyies it into internal array
+     * @param date
+     * @return
+     */
     public boolean setDate(int[] date){
         if (isValidDate(date[0],date[1],date[2])){
             for (int i=0;i<this.date.length;){
@@ -39,6 +48,7 @@ class Date{
         return setDate(new int[]{year,month,day});
     }
     /**
+     * get year of Date
     @return return Date objects year.
      */
     public int getYear(){
@@ -52,37 +62,12 @@ class Date{
         return this.date[1];
     }
     /**
-     * 
+     * gets Day of Date
      * @return Date objects day.
      */
     public int getDay(){
         return this.date[2];
     }
-    // void setYear(int year){
-    //     this.year = year;
-    // }
-    // void setMonth(int month){
-    //         this.month = month;
-    // }
-    // void setDay(int day){
-    //     this.day = day;
-    // }
-    // /**
-    //  *  public method to set year, month, day for this date object
-    //  * @param year
-    //  * @param month
-    //  * @param day
-    //  * @return
-    //  */
-    // public boolean setDate(int year, int month,int day){
-    //     if (isValidDate(year,month,day)){
-    //         this.setYear(year);
-    //         this.setMonth(month);
-    //         this.setDay(day);
-    //         return true;
-    //     }
-    //     return false;
-    // }
     /**
      * Checks whether the given year is aleap year.
      * The implementation is based on the 4-100-400 rule.
@@ -97,8 +82,15 @@ class Date{
         // if (year % 100 == 0){
         //     return false;
         // }
-        // return (year % 4 == 0);// stub implementation
+        // return (year % 4 == 0);
     }
+    /**
+     * checks validity of input Date
+     * @param year
+     * @param month
+     * @param day
+     * @return
+     */
     static boolean isValidDate(int year, int month,int day){
         if (year > 1970){
             return false;
