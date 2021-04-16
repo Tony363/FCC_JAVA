@@ -1,17 +1,14 @@
 package IIT.OOP;
 
 public class File{
-    private String name;
+    private String name = null;
     private static final String INV = "INVALID VALUE";
-    File(){
-        this.name = null;
-    }
+    File(){}
     File(Object name){
         if (this.isValidName(name)){
             String temp = (String)name;
             this.name = temp;
         }else{
-            this.name = null;
             System.out.println(INV);
         }
     }
@@ -74,6 +71,12 @@ public class File{
         System.out.println("="+f1.getName()+"=");
         System.out.println("="+f1+"=");
         f1.setName(null);
+        System.out.println("="+f1.getName()+"=");
+        System.out.println("="+f1+"=");
+        f1.setName(".");
+        System.out.println("="+f1.getName()+"=");
+        System.out.println("="+f1+"=");
+        f1.setName("\\");
         System.out.println("="+f1.getName()+"=");
         System.out.println("="+f1+"=");
     }
