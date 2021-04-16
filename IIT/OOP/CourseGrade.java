@@ -13,7 +13,7 @@ public class CourseGrade {
             String temp = course;char tempG = letter;
             this.courseName = temp;this.letterGrade = tempG;
         }else {
-            System.out.printf("%s\n",INV);
+            System.out.println(INV);
         }
         this.courseName = "TBD";
         this.letterGrade = 'B';
@@ -37,7 +37,7 @@ public class CourseGrade {
             String temp = course;
             this.courseName = temp;
         }else{
-            System.out.printf("%s\n",INV);
+            System.out.println(INV);
         }
     }
     public void setLetterGrade(char grade){
@@ -45,7 +45,7 @@ public class CourseGrade {
             char temp = grade;
             this.letterGrade = temp;
         }else {
-            System.out.printf("%s\n",INV);
+            System.out.println(INV);
         }
     }
     @Override // check method signature, make sure signature already defined
@@ -57,17 +57,23 @@ public class CourseGrade {
         if (o instanceof CourseGrade){
             CourseGrade d = (CourseGrade)o;
             return (this.getLetterGrade() == d.getLetterGrade()
-            && this.getCourseName() == d.getCourseName()); 
+            && this.getCourseName().equals(d.getCourseName())); 
         }
         return false;
     }
     public static boolean isAlphaNumeric(char char1) {
         return (char1 >= 'A' && char1 <= 'D') || (char1 == 'F');
     }
-    // public static void main(String[] args){
-    //     CourseGrade g = new CourseGrade("wtf",'a');
-    //     System.out.println("="+g.getCourseName()+"=");
-    //     System.out.println("="+g.getLetterGrade()+"=");
-    //     System.out.println("="+g+"=");
-    // }
+    public static void main(String[] args){
+        CourseGrade g = new CourseGrade("\twtf\t",'A');
+        System.out.println("="+g.getCourseName()+"=");
+        System.out.println("="+g.getLetterGrade()+"=");
+        System.out.println("="+g+"=");
+        g.setLetterGrade('A');
+        g.setLetterGrade('B');
+        g.setLetterGrade('C');
+        g.setLetterGrade('D');
+        g.setLetterGrade('F');
+        // g.setLetterGrade('G');
+    }
 }
