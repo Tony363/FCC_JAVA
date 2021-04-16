@@ -1,27 +1,27 @@
 package IIT.OOP;
 
 public class CourseGrade {
-    private String courseName;
-    private char letterGrade;
+    private String courseName = "TBD";
+    private char letterGrade = 'B';
     private static final String INV = "INVALID VALUE";
-    CourseGrade(){
-        this.courseName = "TBD";
-        this.letterGrade = 'B';
-    }
-    CourseGrade(String course,char letter){
-        if (this.isValidCourse(course) && this.isValidGrade(letter)){
-            String temp = course;char tempG = letter;
-            this.courseName = temp;this.letterGrade = tempG;
+    public CourseGrade(){}
+    public CourseGrade(Object course,char letter){ // problem with to check char parameter as object
+        if (isValidCourse(course) && isValidGrade(letter)){
+            String temp = (String)course;
+            char tempG = letter;
+            this.courseName = temp;
+            this.letterGrade = tempG;
         }else {
-            this.courseName = "TBD";
-            this.letterGrade = 'B';
             System.out.println(INV);
         }
     }
-    Boolean isValidCourse(String str){
-        return str.trim().equals(str);
+    static Boolean isValidCourse(Object str){
+        if (str instanceof String){
+            return ((String)str == null)|| ((String)str).trim().hashCode() == ((String)str).hashCode();
+        }
+        return str == null;
     }
-    Boolean isValidGrade(char grade){
+    static Boolean isValidGrade(char grade){
         return  (isAlphaNumeric(grade));
     }
     public String getCourseName(){
@@ -57,7 +57,7 @@ public class CourseGrade {
         if (o instanceof CourseGrade){
             CourseGrade d = (CourseGrade)o;
             return (this.getLetterGrade() == d.getLetterGrade()
-            && this.getCourseName().equals(d.getCourseName())); 
+            && this.getCourseName().hashCode() == d.getCourseName().hashCode()); 
         }
         return false;
     }
@@ -65,7 +65,8 @@ public class CourseGrade {
         return (char1 >= 'A' && char1 <= 'D') || (char1 == 'F');
     }
     public static void main(String[] args){
-        CourseGrade g = new CourseGrade("\twtf\t",'A');
+        // CourseGrade g = new CourseGrade(null,'A');
+        CourseGrade g = new CourseGrade("wtf",'A');
         System.out.println("="+g.getCourseName()+"=");
         System.out.println("="+g.getLetterGrade()+"=");
         System.out.println("="+g+"=");
@@ -74,6 +75,5 @@ public class CourseGrade {
         g.setLetterGrade('C');
         g.setLetterGrade('D');
         g.setLetterGrade('F');
-        // g.setLetterGrade('G');
     }
 }

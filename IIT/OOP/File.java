@@ -1,28 +1,31 @@
 package IIT.OOP;
+import java.util.Scanner;
 
 public class File{
     private String name = null;
     private static final String INV = "INVALID VALUE";
-    File(){}
-    File(Object name){
-        if (this.isValidName(name)){
+    public File(){}
+    public File(Object name){
+        if (isValidName(name)){
             String temp = (String)name;
             this.name = temp;
         }else{
+            // this.name = null;
             System.out.println(INV);
         }
     }
-    Boolean isValidName(Object name){
+    static boolean isValidName(Object name){
         if (name instanceof String){
-            return !(((String)name).trim().isEmpty());
+            return ((String)name) == null || !(((String)name).trim().isEmpty());
         }
-        return  name == null;
+        return name == null;
     }
     String getName(){
-        return this.name;
+        String Name = this.name;
+        return Name;
     }
     void setName(Object name){
-        if (this.isValidName(name)){
+        if (isValidName(name)){
             String temp = (String)name;
             this.name = temp;
         }else{
@@ -37,7 +40,7 @@ public class File{
     public boolean equals(Object o){
         if (o instanceof File){
             File d = (File)o;
-            return this.getName().equals(d.getName()); 
+            return this.getName().hashCode() == d.getName().hashCode(); 
         }
         return false;
     }
@@ -48,6 +51,7 @@ public class File{
         return this.getName().substring(this.getName().lastIndexOf(".")+1);
     }
     public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
         File f1 = new File();
         f1.setName("Test.java");
         System.out.println("="+f1.getName()+"=");
@@ -71,12 +75,6 @@ public class File{
         System.out.println("="+f1.getName()+"=");
         System.out.println("="+f1+"=");
         f1.setName(null);
-        System.out.println("="+f1.getName()+"=");
-        System.out.println("="+f1+"=");
-        f1.setName(".");
-        System.out.println("="+f1.getName()+"=");
-        System.out.println("="+f1+"=");
-        f1.setName("\\");
         System.out.println("="+f1.getName()+"=");
         System.out.println("="+f1+"=");
     }
