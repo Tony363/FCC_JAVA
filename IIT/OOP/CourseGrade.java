@@ -1,19 +1,22 @@
 package IIT.OOP;
 
-class Grade{
-    private String courseName = "TBD";
-    private char letterGrade = 'B';
-    private static final String invalid = "INVALID VALUE";
-    Grade(){}
-    Grade(String course,char letter){
+public class CourseGrade {
+    private String courseName;
+    private char letterGrade;
+    private static final String INV = "INVALID VALUE";
+    CourseGrade(){
+        this.courseName = "TBD";
+        this.letterGrade = 'B';
+    }
+    CourseGrade(String course,char letter){
         if (this.isValidCourse(course) && this.isValidGrade(letter)){
-            String temp = course;
-            this.courseName = temp;
-            char tempG = letter;
-            this.letterGrade = tempG;
+            String temp = course;char tempG = letter;
+            this.courseName = temp;this.letterGrade = tempG;
         }else {
-            System.out.println(invalid);
+            System.out.printf("%s\n",INV);
         }
+        this.courseName = "TBD";
+        this.letterGrade = 'B';
     }
     Boolean isValidCourse(String str){
         return str.trim().equals(str) ? true: false;
@@ -34,15 +37,15 @@ class Grade{
             String temp = course;
             this.courseName = temp;
         }else{
-            System.out.println(invalid);
+            System.out.printf("%s\n",INV);
         }
     }
-    public void setGradeName(char grade){
+    public void setLetterGrade(char grade){
         if (this.isValidGrade(grade)){
             char temp = grade;
             this.letterGrade = temp;
         }else {
-            System.out.println(invalid);
+            System.out.printf("%s\n",INV);
         }
     }
     @Override // check method signature, make sure signature already defined
@@ -51,25 +54,20 @@ class Grade{
     }
     @Override
     public boolean equals(Object o){
-        if (o instanceof Grade){
-            Grade d = (Grade)o;
+        if (o instanceof CourseGrade){
+            CourseGrade d = (CourseGrade)o;
             return (this.getLetterGrade() == d.getLetterGrade()
             && this.getCourseName() == d.getCourseName()); 
         }
         return false;
     }
     public static boolean isAlphaNumeric(char char1) {
-        return (char1 >= 'a' && char1 <= 'z') || (char1 >= 'A' && char1 <= 'Z');
+        return (char1 >= 'A' && char1 <= 'D') || (char1 == 'F');
     }
-}
-
-public class CourseGrade{
-    public static void main(String[] args){
-        Grade g = new Grade("OOP",'A');
-        System.out.println("="+g.getCourseName()+"=");
-        System.out.println("="+g.getLetterGrade()+"=");
-        System.out.println("="+g+"=");
-        g.setCourseName("\twtf");
-        g.setGradeName(' ');
-    }
+    // public static void main(String[] args){
+    //     CourseGrade g = new CourseGrade("wtf",'a');
+    //     System.out.println("="+g.getCourseName()+"=");
+    //     System.out.println("="+g.getLetterGrade()+"=");
+    //     System.out.println("="+g+"=");
+    // }
 }
