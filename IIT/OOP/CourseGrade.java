@@ -13,16 +13,16 @@ public class CourseGrade {
             String temp = course;char tempG = letter;
             this.courseName = temp;this.letterGrade = tempG;
         }else {
+            this.courseName = "TBD";
+            this.letterGrade = 'B';
             System.out.println(INV);
         }
-        this.courseName = "TBD";
-        this.letterGrade = 'B';
     }
     Boolean isValidCourse(String str){
-        return str.trim().equals(str) ? true: false;
+        return str.trim().equals(str);
     }
     Boolean isValidGrade(char grade){
-        return (grade != ' ') && (isAlphaNumeric(grade));
+        return  (isAlphaNumeric(grade));
     }
     public String getCourseName(){
         String course = this.courseName;
