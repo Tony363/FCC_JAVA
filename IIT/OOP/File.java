@@ -5,28 +5,28 @@ public class File{
     private String name = null;
     private static final String INV = "INVALID VALUE";
     public File(){}
-    public File(Object name){
+    public File(String name){
         if (isValidName(name)){
-            String temp = (String)name;
+            String temp = name;
             this.name = temp;
         }else{
             // this.name = null;
             System.out.println(INV);
         }
     }
-    static boolean isValidName(Object name){
-        if (name instanceof String){
-            return ((String)name) == null || !(((String)name).trim().isEmpty());
-        }
-        return name == null;
+    static boolean isValidName(String name){
+        // if (name instanceof String){
+        //     return ((String)name) == null || !(((String)name).trim().isEmpty());
+        // }
+        return name == null || !name.isEmpty();
     }
     String getName(){
         String Name = this.name;
         return Name;
     }
-    void setName(Object name){
+    void setName(String name){
         if (isValidName(name)){
-            String temp = (String)name;
+            String temp = name;
             this.name = temp;
         }else{
             System.out.println(INV);
@@ -40,7 +40,7 @@ public class File{
     public boolean equals(Object o){
         if (o instanceof File){
             File d = (File)o;
-            return this.getName().hashCode() == d.getName().hashCode(); 
+            return this.getName() == d.getName(); 
         }
         return false;
     }
@@ -49,6 +49,10 @@ public class File{
             return null;
         }
         return this.getName().substring(this.getName().lastIndexOf(".")+1);
+    }
+    @Override
+    public int hashCode(){
+        return this.name.hashCode();
     }
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);

@@ -1,28 +1,31 @@
 package IIT.OOP;
-
 public class CourseGrade {
     private String courseName = "TBD";
     private char letterGrade = 'B';
     private static final String INV = "INVALID VALUE";
     public CourseGrade(){}
-    public CourseGrade(Object course,char letter){ // problem with to check char parameter as object
+    public CourseGrade(String course,char letter){ // problem with to check char parameter as object
         if (isValidCourse(course) && isValidGrade(letter)){
-            String temp = (String)course;
-            char tempG = letter;
-            this.courseName = temp;
-            this.letterGrade = tempG;
+            this.courseName = course;
+            this.letterGrade = letter;
         }else {
+            if (isValidCourse(course)){
+                this.courseName = course;
+            }
+            if (isValidGrade(letter)){
+                this.letterGrade = letter;
+            }
             System.out.println(INV);
         }
     }
-    static Boolean isValidCourse(Object str){
-        if (str instanceof String){
-            return ((String)str == null)|| ((String)str).trim().hashCode() == ((String)str).hashCode();
+    private static boolean isValidCourse(String str){
+        if (str == null){
+            return false;
         }
-        return str == null;
+        return str.trim().equals(str) && !str.isEmpty();
     }
-    static Boolean isValidGrade(char grade){
-        return  (isAlphaNumeric(grade));
+    private static boolean isValidGrade(char grade){
+        return (grade >= 'A' && grade <= 'D') || (grade == 'F');
     }
     public String getCourseName(){
         String course = this.courseName;
@@ -33,7 +36,7 @@ public class CourseGrade {
         return grade;
     }
     public void setCourseName(String course){
-        if (this.isValidCourse(course)){
+        if (isValidCourse(course)){
             String temp = course;
             this.courseName = temp;
         }else{
@@ -41,11 +44,12 @@ public class CourseGrade {
         }
     }
     public void setLetterGrade(char grade){
-        if (this.isValidGrade(grade)){
+        if (isValidGrade(grade)){
             char temp = grade;
             this.letterGrade = temp;
         }else {
             System.out.println(INV);
+            // throw new IllegalArgumentException();
         }
     }
     @Override // check method signature, make sure signature already defined
@@ -54,26 +58,52 @@ public class CourseGrade {
     }
     @Override
     public boolean equals(Object o){
+        if (o == null){
+            return false;
+        }
         if (o instanceof CourseGrade){
             CourseGrade d = (CourseGrade)o;
             return (this.getLetterGrade() == d.getLetterGrade()
-            && this.getCourseName().hashCode() == d.getCourseName().hashCode()); 
+            && this.getCourseName().equals(d.getCourseName())); 
         }
         return false;
     }
-    public static boolean isAlphaNumeric(char char1) {
-        return (char1 >= 'A' && char1 <= 'D') || (char1 == 'F');
+    @Override
+    public int hashCode(){
+        return this.courseName.hashCode();
     }
     public static void main(String[] args){
-        // CourseGrade g = new CourseGrade(null,'A');
-        CourseGrade g = new CourseGrade("wtf",'A');
+        CourseGrade g = new CourseGrade("\\",'\0');
+        CourseGrade h = new CourseGrade("\\",'\0');
+        CourseGrade N = null;
         System.out.println("="+g.getCourseName()+"=");
         System.out.println("="+g.getLetterGrade()+"=");
         System.out.println("="+g+"=");
-        g.setLetterGrade('A');
-        g.setLetterGrade('B');
-        g.setLetterGrade('C');
-        g.setLetterGrade('D');
-        g.setLetterGrade('F');
+        System.out.println("="+g.equals(N)+"=");
+        System.out.println("="+g.equals(h)+"=");
+        // g.setCourseName("Test.java");
+        // System.out.println("="+g.getCourseName()+"=");
+        // System.out.println("="+g+"=");
+        // g.setCourseName("Test.java  ");
+        // System.out.println("="+g.getCourseName()+"=");
+        // System.out.println("="+g+"=");
+        // g.setCourseName(" Test.java");
+        // System.out.println("="+g.getCourseName()+"=");
+        // System.out.println("="+g+"=");
+        // g.setCourseName(" Test.java    ");
+        // System.out.println("="+g.getCourseName()+"=");
+        // System.out.println("="+g+"=");
+        // g.setCourseName("Test HELLO.java");
+        // System.out.println("="+g.getCourseName()+"=");
+        // System.out.println("="+g+"=");
+        // g.setCourseName(" $Test @HELLO.javafilename");
+        // System.out.println("="+g.getCourseName()+"=");
+        // System.out.println("="+g+"=");
+        // g.setCourseName("");
+        // System.out.println("="+g.getCourseName()+"=");
+        // System.out.println("="+g+"=");
+        // g.setCourseName(null);
+        // System.out.println("="+g.getCourseName()+"=");
+        // System.out.println("="+g+"=");
     }
 }
