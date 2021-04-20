@@ -10,14 +10,10 @@ public class File{
             String temp = name;
             this.name = temp;
         }else{
-            // this.name = null;
             System.out.println(INV);
         }
     }
     static boolean isValidName(String name){
-        // if (name instanceof String){
-        //     return ((String)name) == null || !(((String)name).trim().isEmpty());
-        // }
         return name == null || !name.isEmpty();
     }
     String getName(){
