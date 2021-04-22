@@ -1,7 +1,7 @@
 package IIT.OOP;
 import java.util.Scanner;
 
-public class File{
+public class File{ // file name could be white space
     private String name = null;
     private static final String INV = "INVALID VALUE";
     public File(){}
@@ -36,7 +36,7 @@ public class File{
     public boolean equals(Object o){
         if (o instanceof File){
             File d = (File)o;
-            return this.getName() == d.getName(); 
+            return this.getName() == d.getName(); // this.getName() can be null
         }
         return false;
     }
