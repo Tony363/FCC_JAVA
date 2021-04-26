@@ -1,26 +1,17 @@
 package src.sand.box;
 
 public class stackArrays{
-    private static int[] make2(int[] a, int[] b) {
+    public static int[] make2(int[] a, int[] b) {
         int[] New = new int[2];
-        int i=0;
-        while(i<(a.length<2?a.length:2)){
-          New[i] = a[i];
-          i++;
-        }
-        // print(i);
-        if (i >= 2){
-            return New;
-        }
-        // print(New);
-        for (int j=0;j<((Math.abs(b.length-1)-(a.length-1))<2?(Math.abs(b.length-1)-(a.length-1)):1);j++){
-          New[i+j] = b[j];
-          if (i+j >= 2){
-              return New;
-          }
+        if (a.length >= 2){
+          New[0] = a[0];New[1] = a[1];
+        }else if (a.length == 0){
+          New[0] = b[0];New[1] = b[1];
+        }else if (a.length == 1){
+          New[0] = a[0];New[1] = b[0];
         }
         return New;
-      }
+    } 
     public static void print(int a){
         System.out.println(a);
     }
