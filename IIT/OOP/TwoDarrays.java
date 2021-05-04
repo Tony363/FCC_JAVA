@@ -2,25 +2,30 @@ package IIT.OOP;
 import java.util.Scanner;
 
 public class TwoDarrays{
+    int[][] matrix;
+    int M,N;
+    TwoDarrays(){}
     /**
      *  
      * @param M rows int
      * @param N cols int
      * @param matrix 2d array
      */
-    int[][] matrix;
-    public void populate(){
+    void populate(){
         Scanner sc = new Scanner(System.in);
-        int M = sc.nextInt();
-        int N = sc.nextInt();
+        this.M = sc.nextInt();
+        this.N = sc.nextInt();
         this.matrix = new int[M][N];
-        for (int i=0;i<M;i++){
-            for (int j=0;j<N;j++){
+        for (int i=0;i<this.M;i++){
+            for (int j=0;j<this.N;j++){
                 this.matrix[i][j] = sc.nextInt();
             }
         }
     }
-    public void printM(){
+    /**
+     * print object matrix
+     */
+    void printM(){
         System.out.printf("[");
         for (int i=0;i<this.matrix.length;i++){
             System.out.printf("[");
