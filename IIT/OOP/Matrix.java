@@ -1,6 +1,6 @@
 package IIT.OOP;
-import java.io.FIleReader;
-import java.io.File.Writer;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.Scanner;
 import java.io.PrintWriter;
 
@@ -40,16 +40,20 @@ public class Matrix{
     }
     public static double[][] mul(double[][] m1,double[][] m2){
         // assume that m1 is NxM and m2 is MxL (no error handling)
-        int N = m1.length;
-        int M = m1[0].length;
-        int L = m2[0].length;
+        int N = m1.length-1;
+        int M = m1[0].length-1;
+        int L = m2[0].length-1;
+        if (M!=L){
+            System.out.println("invalid dimensions");
+            System.exit(-1);
+        }
         double[][] r = new double[N][L];
         for(int i=0; i<N; i++){
-            double vij = 0;
-            for(int j=0; j<M; j++){
-                vij += m1[i][k] * m2[k][j];
-            }
-            r[i][j] = vij;
+            for (int j=0; j<L; j++){
+                for(int k=0; k<M; k++){
+                    r[i][j] += m1[i][k] * m2[k][j];
+                }
+            }            
         }
         return r;
     }
