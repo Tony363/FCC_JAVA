@@ -40,21 +40,29 @@ public class Matrix{
     }
     public static double[][] mul(double[][] m1,double[][] m2){
         // assume that m1 is NxM and m2 is MxL (no error handling)
-        int N = m1.length-1;
-        int M = m1[0].length-1;
-        int L = m2[0].length-1;
+        int M = m1.length;
+        int L = m2[0].length;
         if (M!=L){
             System.out.println("invalid dimensions");
             System.exit(-1);
         }
-        double[][] r = new double[N][L];
-        for(int i=0; i<N; i++){
-            for (int j=0; j<L; j++){
-                for(int k=0; k<M; k++){
+        double[][] r = new double[m1.length][m2[0].length];
+        for (int i=0; i<M; i++){
+            for (int j=0;j<L;j++){
+                for (int k=0; k<M+1; k++){
                     r[i][j] += m1[i][k] * m2[k][j];
                 }
-            }            
+            }
         }
         return r;
+    }
+    public static double[][] transpose(double[][] m){
+        double[][] t = new double[m[0].length][m.length];
+        for (int i=0;i<m.length;i++){
+            for (int j=0;j<m[0].length;j++){
+                t[j][i] = m[i][j];
+            }
+        }
+        return t;
     }
 }
