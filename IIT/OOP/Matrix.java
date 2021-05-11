@@ -28,6 +28,10 @@ public class Matrix{
             p.println();
         }
         p.println();
+        p.flush();// automatic synchronization may not produce correct result with output buffer
+        // close method implicitly implies flush and release output resources
+        // java programmers explicitily release resource
+        p.close();
     }
     public static void printMatrix(double[][] m){
         for(double[] row : m){
