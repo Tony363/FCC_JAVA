@@ -3,15 +3,8 @@ import java.util.Arrays;
 
 public class set01{
     static void setArray(int[][] a){
-        int count = 0;
-        for(int[] row:a){
-            if (count % 2 == 0){
-                Arrays.fill(row,0);
-            }else{
-                Arrays.fill(row,1);
-            }
-            count ++;
-        }     
+        
+        for(int i=0;i<a.length;i++){Arrays.fill(a[i],i%2);}     
     }
 
     public static void main(String[] args){

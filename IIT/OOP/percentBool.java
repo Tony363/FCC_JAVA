@@ -2,7 +2,7 @@ package IIT.OOP;
 
 public class percentBool{
     static double percentageFalse(boolean[][] a){
-        int count = 0,total = 0;
+        double count = 0,total = 0;
         for (boolean[] row : a){
             for (boolean col: row){
                 if (!col){
@@ -11,7 +11,7 @@ public class percentBool{
                 total ++;
             }
         }
-        return (total!=0)?((double)count/(double)total)*100:0;
+        return (total!=0)?(count/total)*100:0;
     }
     public static void main(String[] args){
         boolean [][] a = { { true, false, false, true },
