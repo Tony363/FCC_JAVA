@@ -43,7 +43,11 @@ public class DrawingCanvas extends JComponent{
         g2d.draw(p);
         Path2D.Double curve = new Path2D.Double();
         curve.moveTo(250,400);
-        curve.curveTo(100,200,500,300,600,400);
+        curve.curveTo(329,204,397,199,401,252);
+        curve.curveTo(413,201,468,198,466,250);
+        curve.curveTo(465,304,415,345,402,350);
+        curve.curveTo(388,346,328,308,328,256);
+
         g2d.draw(curve);
     }    
 }        
