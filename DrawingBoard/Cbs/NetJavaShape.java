@@ -6,4 +6,6 @@ package DrawingBoard.Cbs;
 //Graphics collection
 public interface NetJavaShape {
     public abstract void draw();
+    public abstract void Erase();
 }
+

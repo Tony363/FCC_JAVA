@@ -1,7 +1,6 @@
 //Straight line
 package DrawingBoard.Cbs;
-import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.*;
 import DrawingBoard.Cbs.NetJavaShape;
 
 public class ImpLine implements NetJavaShape{
@@ -20,5 +19,10 @@ public class ImpLine implements NetJavaShape{
         g.setColor(c);
         g.drawLine(x1, y1, x2, y2);
     }
-
+    public void Erase(){
+        Graphics2D g2d = (Graphics2D)g;
+        g2d.setStroke(new BasicStroke(10));
+        g2d.setColor(Color.WHITE);
+        g2d.drawLine(x1,y1,x2,y2);
+    }
 }
