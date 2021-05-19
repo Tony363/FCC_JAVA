@@ -2,19 +2,9 @@ package IIT.OOP;
 import java.util.Arrays;
 public class arrayConcat{
     static String[] toStrings(char[][] a){
-        // for (int i=0;i<a.length-1;i++){
-        //     String temp = new String(a[i]);
-        //     str[i] = temp;
-        // }
         String[] str = new String[a.length];
-        int count = 0;
-        for (char[] carr:a){
-            String temp = new String(a[count]);
-            str[count] = temp;
-            count ++;
-        }
-        for (String s: str){
-            System.out.println(s);
+        for (int i=0;i<a.length;i++){
+            str[i] = String.valueOf(a[i]);
         }
         return str;
     }

@@ -3,7 +3,6 @@ import java.util.Arrays;
 
 public class set01{
     static void setArray(int[][] a){
-        
         for(int i=0;i<a.length;i++){Arrays.fill(a[i],i%2);}     
     }
 

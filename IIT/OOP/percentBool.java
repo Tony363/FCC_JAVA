@@ -1,16 +1,16 @@
 package IIT.OOP;
+import java.util.*;
 
 public class percentBool{
     static double percentageFalse(boolean[][] a){
         double count = 0,total = 0;
-        for (boolean[] row : a){
-            for (boolean col: row){
-                if (!col){
-                    count ++;
-                }
-                total ++;
-            }
+        List<Boolean> A = new ArrayList<Boolean>(a);
+        for (Boolean[] row : A){
+            count += (double)(Collections.frequency(Arrays.asList(row),false));
+            total += (double)(Collections.frequency(Arrays.asList(row),true));
         }
+        System.out.println(count);
+        System.out.println(total);
         return (total!=0)?(count/total)*100:0;
     }
     public static void main(String[] args){
