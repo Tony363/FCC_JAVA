@@ -15,7 +15,7 @@ public class DrawRect extends JPanel implements NetJavaShape {
         Graphics g = jp2.getGraphics();
         JFrame f = new JFrame("Draw Box Mouse 2");
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        // f.setContentPane(new DrawRect(g));
+        f.setContentPane(new DrawRect(g,0,0,0,0,Color.WHITE));
         f.setSize(300, 300);
         f.setVisible(true);
         
@@ -28,19 +28,9 @@ public class DrawRect extends JPanel implements NetJavaShape {
         this.y2 = y2;
         this.c = c; 
         this.g = g;
-        MyMouseListener listener = new MyMouseListener();
-        addMouseListener(listener);
-        addMouseMotionListener(listener);
-    }
-
-    public void setStartPoint(int x, int y) {
-        this.x1 = x;
-        this.y1 = y;
-    }
-
-    public void setEndPoint(int x, int y) {
-        x2 = (x);
-        y2 = (y);
+        // MyMouseListener listener = new MyMouseListener();
+        // addMouseListener(listener);
+        // addMouseMotionListener(listener);
     }
 
     public void drawPerfectRect(Graphics g, int x, int y, int x2, int y2) {
@@ -51,21 +41,27 @@ public class DrawRect extends JPanel implements NetJavaShape {
         g.fillRect(px, py, pw, ph);
     }
 
-    class MyMouseListener extends MouseAdapter {
+    // class MyMouseListener extends MouseAdapter {
 
-        public void mousePressed(MouseEvent e) {
-            setStartPoint(e.getX(), e.getY());
-        }
+    //     public void mousePressed(MouseEvent e) {
+    //         setStartPoint(e.getX(), e.getY());
+    //     }
 
-        public void mouseDragged(MouseEvent e) {
-            setEndPoint(e.getX(), e.getY());
-            repaint();
-        }
+    //     public void mouseDragged(MouseEvent e) {
+    //         setEndPoint(e.getX(), e.getY());
+    //         repaint();
+    //     }
 
-        public void mouseReleased(MouseEvent e) {
-            setEndPoint(e.getX(), e.getY());
-            repaint();
-        }
+    //     public void mouseReleased(MouseEvent e) {
+    //         setEndPoint(e.getX(), e.getY());
+    //         repaint();
+    //     }
+    // }
+    public void Erase(){
+        System.out.println("erasing");
+        super.paintComponent(g);
+        g.setColor(Color.WHITE);
+        drawPerfectRect(g, x1, y1, x2, y2);
     }
     public void draw(){
         super.paintComponent(g);

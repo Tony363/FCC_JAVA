@@ -37,6 +37,15 @@ public class DrawListener implements ActionListener, MouseListener,
             this.nowColor = nowColor;
         }
 
+        public void setStartPoint(int x, int y) {
+            this.x1 = x;
+            this.y1 = y;
+        }
+    
+        public void setEndPoint(int x, int y) {
+            x2 = (x);
+            y2 = (y);
+        }
 
         @Override
         //Mouse drag method
@@ -58,11 +67,12 @@ public class DrawListener implements ActionListener, MouseListener,
                 this.x1 = x;
                 this.y1 = y;
             }else if ("Eraser".equals(this.str)){
-                System.out.println("Erasing");
-                int x = e.getX(),y = e.getY();
+                setEndPoint(e.getX(), e.getY());
+                repaint();
+                // int x = e.getX(),y = e.getY();
                 this.shape = new ImpLine(this.g,x,y,this.x1,this.y1,this.color);
                 this.shape.Erase();
-                // this.shapesArray.add(this.shape);
+                this.shapesArray.add(this.shape);
                 this.x1 = x;
                 this.y1 = y;
             }
@@ -88,6 +98,9 @@ public class DrawListener implements ActionListener, MouseListener,
             
             x1=e.getX();//Get the x coordinate of the mouse when pressed
             y1=e.getY();//Get the y coordinate of the mouse when pressed
+            if ("Eraser".equals(str)){
+                setStartPoint(e.getX(), e.getY());
+            }
         }
 
         @Override
@@ -104,6 +117,9 @@ public class DrawListener implements ActionListener, MouseListener,
                 //Save the graphics in the collection
                 shapesArray.add(shape);
     //            g.drawLine(x1, y1, x2, y2);
+            }else if ("Eraser".equals(str)){
+                setEndPoint(e.getX(), e.getY());
+                repaint();
             }
         }
 
