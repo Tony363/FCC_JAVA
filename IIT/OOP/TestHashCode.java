@@ -31,7 +31,7 @@ public class TestHashCode{
             TestHashCode k4 = new TestHashCode(4);
             h.put(k1,"A");h.put(k2,"B");h.put(k3,"C");h.put(k4,"D");
             TestHashCode q = new TestHashCode(1);
-            String s = h.get(q);
+            String s = h.get(q);// return null if hashcode not overriden
             System.out.println(s);
         }catch(Exception e){
             e.printStackTrace();

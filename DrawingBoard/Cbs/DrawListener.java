@@ -24,6 +24,13 @@ public class DrawListener implements ActionListener, MouseListener,
         private List<NetJavaShape> shapesArray = new ArrayList<NetJavaShape>();
         //Graphics
         private NetJavaShape shape;
+        private DrawRect rect;
+        DrawListener(){};
+        DrawListener(Object o){
+            if (o instanceof DrawRect){
+                this.rect = rect;
+            }
+        }
         //Get the collection in the draw class
         public List<NetJavaShape> getShapesArray() {
             return shapesArray;
@@ -36,15 +43,14 @@ public class DrawListener implements ActionListener, MouseListener,
         public void setNowColor(JButton nowColor) {
             this.nowColor = nowColor;
         }
-
         public void setStartPoint(int x, int y) {
             this.x1 = x;
             this.y1 = y;
         }
     
         public void setEndPoint(int x, int y) {
-            x2 = (x);
-            y2 = (y);
+            this.x2 = (x);
+            this.y2 = (y);
         }
 
         @Override
@@ -67,14 +73,14 @@ public class DrawListener implements ActionListener, MouseListener,
                 this.x1 = x;
                 this.y1 = y;
             }else if ("Eraser".equals(this.str)){
-                setEndPoint(e.getX(), e.getY());
-                repaint();
                 // int x = e.getX(),y = e.getY();
-                this.shape = new ImpLine(this.g,x,y,this.x1,this.y1,this.color);
-                this.shape.Erase();
-                this.shapesArray.add(this.shape);
-                this.x1 = x;
-                this.y1 = y;
+                // this.shape = new ImpLine(this.g,x,y,this.x1,this.y1,this.color);
+                // this.shape.Erase();
+                // this.shapesArray.add(this.shape);
+                // this.x1 = x;
+                // this.y1 = y;
+                rect.setEndPoint(e.getX(), e.getY());
+                rect.repaint();
             }
         }
 
@@ -99,7 +105,9 @@ public class DrawListener implements ActionListener, MouseListener,
             x1=e.getX();//Get the x coordinate of the mouse when pressed
             y1=e.getY();//Get the y coordinate of the mouse when pressed
             if ("Eraser".equals(str)){
-                setStartPoint(e.getX(), e.getY());
+                int x = e.getX(),y = e.getY();
+                this.rect = new DrawRect(this.g,x,y,this.x1,this.y1,this.color);
+                this.rect.setStartPoint(e.getX(),e.getY());
             }
         }
 
@@ -116,10 +124,9 @@ public class DrawListener implements ActionListener, MouseListener,
                 shape.draw();
                 //Save the graphics in the collection
                 shapesArray.add(shape);
-    //            g.drawLine(x1, y1, x2, y2);
             }else if ("Eraser".equals(str)){
-                setEndPoint(e.getX(), e.getY());
-                repaint();
+                this.rect.setEndPoint(e.getX(), e.getY());
+                this.rect.repaint();
             }
         }
 
@@ -132,7 +139,7 @@ public class DrawListener implements ActionListener, MouseListener,
         @Override
         //Mouse exit method
         public void mouseExited(MouseEvent e) {
-            // System.ou .println("mouseExited");
+            // System.out.println("mouseExited");
         }
 
         @Override
@@ -148,5 +155,4 @@ public class DrawListener implements ActionListener, MouseListener,
                 System.out.println(str);
             }
         }
-
     }

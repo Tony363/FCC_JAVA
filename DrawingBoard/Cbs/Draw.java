@@ -34,7 +34,37 @@ public class Draw extends JFrame {
         this.setResizable(false);//The window size remains unchanged
         
         //Use an array to save button names
-        String buttonName[] = {"Draw a straight line", "Draw an ellipse", "Draw a curve", "Polygon", "Eraser", "Drag line", "Triangle", "Draw a sphere", "Brush", "Airbrush", "Dice", "3D Rectangle", "3D Circle", "3D Triangle", "Iterative Fractal", "Modern Fractal", "Maple Leaf", "Drawing Tree", "Mandelbrot Set", "L -System", "Iterative line drawing", "Iterative triangle", "Sierpinski carpet", "Drawing characters", "Empty", "Straw" ,"Rectangle","Five-pointed star","Multi-line"," character"};
+        String buttonName[] = {
+            "Draw a straight line", 
+            "Draw an ellipse", 
+            "Draw a curve", 
+            "Polygon", 
+            "Eraser", 
+            "Drag line", 
+            "Triangle", 
+            "Draw a sphere", 
+            "Brush", 
+            "Airbrush",
+            "Dice", 
+            "3D Rectangle", 
+            "3D Circle", 
+            "3D Triangle", 
+            "Iterative Fractal", 
+            "Modern Fractal", 
+            "Maple Leaf", 
+            "Drawing Tree", 
+            "Mandelbrot Set", 
+            "L -System", 
+            "Iterative line drawing", 
+            "Iterative triangle", 
+            "Sierpinski carpet", 
+            "Drawing characters", 
+            "Empty", "Straw" ,
+            "Rectangle",
+            "Five-pointed star",
+            "Multi-line",
+            " character"
+        };
         JPanel jp1=new JPanel(new GridLayout(15, 2,10,10));//Used to save graphic buttons, use grid layout
         jp1.setPreferredSize(new Dimension(200, 800));
         
