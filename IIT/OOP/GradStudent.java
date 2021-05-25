@@ -21,11 +21,14 @@ public class GradStudent extends Student{
     @Override
     public boolean equals(Object o){
         // if (o instanceof GradStudent){
-        if (o.getClass() == GradStudent.class){
+        if (o!=null && o.getClass() == GradStudent.class){
             System.out.println("type compatible to GradStudent");
             GradStudent g = (GradStudent)o;
-            return super.equals(g) && isEqual(this.getBSDegree(),g.getBSDegree());
+            return  isEqualGradStudent(this,g);
         }   
         return false;
+    }
+    protected boolean isEqualGradStudent(GradStudent g1,GradStudent g2){
+        return  isEqualStudent(g1,g2) && isEqual(g1.getBSDegree(),g2.getBSDegree());
     }
 }

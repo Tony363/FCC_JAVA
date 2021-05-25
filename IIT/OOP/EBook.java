@@ -12,22 +12,22 @@ public class EBook extends Book{
     @Override 
     public String toString(){
         return String.format("%s %d %s %s",
-            this.getISBN(),this.getNumwords(),
-            this.getTitle(),this.getDownload()
+            this.getISBN(),this.getNumWords(),
+            this.getTitle(),this.getDownloadURL()
         );
     }
     @Override
     public boolean equals(Object o){
         if (o instanceof EBook){
-            EBook b = (Bbook)o;
-            return super.equals(b) && isEquals(this.getDownloadURL(),b.getDownloadURL());;
+            EBook b = (EBook)o;
+            return super.equals(b) && super.isEqual(this.getDownloadURL(),b.getDownloadURL());
         }
         return false;
     }
     @Override
-    public int HashCode() {
+    public int hashCode() {
         int h = this.getISBN().hashCode();
-        h = 31 *h+Integer.valueOf(this.getNumwords()).hashCode();
+        h = 31 *h+Integer.valueOf(this.getNumWords()).hashCode();
         h = 31*h+this.getTitle().hashCode();
         h = 31*h+this.getDownloadURL().hashCode();
         return h;
