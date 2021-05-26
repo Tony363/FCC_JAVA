@@ -53,13 +53,14 @@ public class PCGame extends Game{
 
     @Override
     public boolean equals(Object o){
-        if(o instanceof PCGame){
+        // if(o instanceof PCGame){
+        if (o!=null && o.getClass() == PCGame.class){
             PCGame game = (PCGame)o;
-            return game != null
-                && super.equals(game)
-                && this.getRequiredRAMSize() == game.getRequiredRAMSize()
-                && this.getRequiredCPUSpeed() == game.getRequiredCPUSpeed()
-                && this.getRequiredDiskSize() == game.getRequiredDiskSize();
+            return game != null && this.isEqualPCGame(this,game);
+                // && super.equals(game)
+                // && this.getRequiredRAMSize() == game.getRequiredRAMSize()
+                // && this.getRequiredCPUSpeed() == game.getRequiredCPUSpeed()
+                // && this.getRequiredDiskSize() == game.getRequiredDiskSize();
                 // && this.isEqual(this.getName(),game.getName());
         }
         return false;
@@ -67,9 +68,26 @@ public class PCGame extends Game{
     @Override
     public String toString(){return String.format("PCGame: %s",super.getDescription());}
 
+    @Override
+    public int hashCode() {
+        Double ram = this.getRequiredRAMSize(),disk = this.getRequiredDiskSize(),cpu = this.getRequiredCPUSpeed();
+        int h = ram.hashCode();
+        h = 31 *h+Double.valueOf(disk).hashCode();
+        h = 31*h+cpu.hashCode();
+        return h;
+    }
+
     protected boolean isEqual(String s1,String s2){
         return (s1==null && s2==null) || (s1!=null && s1.equals(s2));
     }
+
+    protected boolean isEqualPCGame(PCGame g1, PCGame g2){
+		return (g1.getRequiredRAMSize() == g2.getRequiredRAMSize())
+            && (g1.getRequiredDiskSize() == g2.getRequiredDiskSize())
+            && (g1.getRequiredCPUSpeed() == g2.getRequiredCPUSpeed())
+            && isEqual(g1.getDescription(),g2.getDescription());
+	}
+    
 }
 
 

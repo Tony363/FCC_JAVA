@@ -43,7 +43,7 @@ public class Student {
 	}
 	protected boolean isEqualStudent(Student s1, Student s2){
 		return isEqual(s1.getID(), s2.getID())
-			       && isEqual(s1.getName(), s2.getName())
-				   && isEqual(s1.getDept(), s2.getDept());
+			&& isEqual(s1.getName(), s2.getName())
+			&& isEqual(s1.getDept(), s2.getDept());
 	}
 }
