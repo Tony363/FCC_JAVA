@@ -70,10 +70,10 @@ public class PCGame extends Game{
 
     @Override
     public int hashCode() {
-        Double ram = this.getRequiredRAMSize(),disk = this.getRequiredDiskSize(),cpu = this.getRequiredCPUSpeed();
-        int h = ram.hashCode();
-        h = 31 *h+Double.valueOf(disk).hashCode();
-        h = 31*h+cpu.hashCode();
+        // Double ram = this.getRequiredRAMSize(),disk = this.getRequiredDiskSize(),cpu = this.getRequiredCPUSpeed();
+        int h = Double.valueOf(this.getRequiredRAMSize()).hashCode();
+        h = 31 * h+Double.valueOf(this.getRequiredDiskSize()).hashCode();
+        h = 31 * h+Double.valueOf(this.getRequiredCPUSpeed()).hashCode();
         return h;
     }
 
@@ -87,7 +87,6 @@ public class PCGame extends Game{
             && (g1.getRequiredCPUSpeed() == g2.getRequiredCPUSpeed())
             && isEqual(g1.getDescription(),g2.getDescription());
 	}
-    
 }
 
 

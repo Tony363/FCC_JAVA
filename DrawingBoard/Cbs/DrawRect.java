@@ -38,7 +38,7 @@ public class DrawRect extends JPanel implements NetJavaShape {
         this.y2 = y2;
         this.c = c; 
         this.g = g;
-        MyMouseListener listener = new MyMouseListener(this);
+        listener = new MyMouseListener(this);
         addMouseListener(listener);
         addMouseMotionListener(listener);
     }

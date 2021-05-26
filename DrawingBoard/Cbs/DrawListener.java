@@ -24,11 +24,13 @@ public class DrawListener implements ActionListener, MouseListener,
         private List<NetJavaShape> shapesArray = new ArrayList<NetJavaShape>();
         //Graphics
         private NetJavaShape shape;
-        private DrawRect rect;
-        DrawListener(){};
-        DrawListener(Object o){
-            if (o instanceof DrawRect){
-                this.rect = rect;
+        private Draw panel;
+
+        public DrawListener(){};
+        public DrawListener(Object o){
+            if (o instanceof Draw){
+                Draw p = (Draw)o;
+                this.panel = p;
             }
         }
         //Get the collection in the draw class
@@ -56,31 +58,25 @@ public class DrawListener implements ActionListener, MouseListener,
         @Override
         //Mouse drag method
         public void mouseDragged(MouseEvent e) {
-            // System.out.println("mouseDragged");
 
+            int x = e.getX(),y = e.getY();
             //Method of drawing a curve
             if  ("Draw a curve".equals(this.str)) {
-                int x, y;
-                x = e.getX();
-                y = e.getY();
+                this.g.setColor(color);
                 //When instantiating the object, the curve is also drawn in a straight line, so it is different to create a new curve class
                 this.shape = new ImpLine(this.g,x,y,this.x1,this.y1,this.color);
                 //Call drawing method
                 this.shape.draw();
                 //Save the graphics in the collection
                 this.shapesArray.add(this.shape);
-                // this.g.drawLine(x, y, this.x1, this.y1);
                 this.x1 = x;
                 this.y1 = y;
             }else if ("Eraser".equals(this.str)){
-                // int x = e.getX(),y = e.getY();
-                // this.shape = new ImpLine(this.g,x,y,this.x1,this.y1,this.color);
-                // this.shape.Erase();
-                // this.shapesArray.add(this.shape);
-                // this.x1 = x;
-                // this.y1 = y;
-                rect.setEndPoint(e.getX(), e.getY());
-                rect.repaint();
+                this.shape = new ImpLine(this.g,x,y,this.x1,this.y1,this.color);
+                this.shape.Erase();
+                this.shapesArray.add(this.shape);
+                this.x1 = x;
+                this.y1 = y;
             }
         }
 
@@ -96,37 +92,39 @@ public class DrawListener implements ActionListener, MouseListener,
             // System.out.println("mouseClicked");
         }
 
+        // THESE 2
+        // record mouse pressed 
+        // then record mouse released 
+        // then g.fillRect
         @Override
         //Mouse down method
         public void mousePressed(MouseEvent e) {
             // System.out.println("mousePressed");
-            g.setColor(color);//Change the color of the pen
-            
-            x1=e.getX();//Get the x coordinate of the mouse when pressed
-            y1=e.getY();//Get the y coordinate of the mouse when pressed
-            if ("Eraser".equals(str)){
-                int x = e.getX(),y = e.getY();
-                this.rect = new DrawRect(this.g,x,y,this.x1,this.y1,this.color);
-                this.rect.setStartPoint(e.getX(),e.getY());
-            }
+            this.g.setColor(color);//Change the color of the pen
+            this.x1 = e.getX();//Get the x coordinate of the mouse when pressed
+            this.y1 = e.getY();//Get the y coordinate of the mouse when pressed
         }
 
         @Override
         //Mouse release method
         public void mouseReleased(MouseEvent e) {
-            x2=e.getX();//Get the x coordinate of the mouse when released
-            y2=e.getY();//Get the y coordinate of the mouse when released
+            this.x2 = e.getX();//Get the x coordinate of the mouse when released
+            this.y2 = e.getY();//Get the y coordinate of the mouse when released
             //Method of drawing a straight line
             if  ("Draw a straight line".equals(str)) {
                 //Instantiate the object,
-                shape=new ImpLine(g,x1,y1,x2,y2,color);
+                this.shape=new ImpLine(g,this.x1,this.y1,this.x2,this.y2,this.color);
                 //Call drawing method
-                shape.draw();
+                this.shape.draw();
                 //Save the graphics in the collection
-                shapesArray.add(shape);
-            }else if ("Eraser".equals(str)){
-                this.rect.setEndPoint(e.getX(), e.getY());
-                this.rect.repaint();
+                this.shapesArray.add(shape);
+            }else if ("REraser".equals(str)){
+                int px = Math.min(this.x1,this.x2);
+                int py = Math.min(this.y1,this.y2);
+                int pw = Math.abs(this.x1-this.x2);
+                int ph = Math.abs(this.y1-this.y2);
+                this.g.setColor(Color.white);
+                this.g.fillRect(px,py,pw,ph);
             }
         }
 

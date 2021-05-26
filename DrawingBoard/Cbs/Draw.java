@@ -38,7 +38,7 @@ public class Draw extends JFrame {
             "Draw a straight line", 
             "Draw an ellipse", 
             "Draw a curve", 
-            "Polygon", 
+            "REraser", 
             "Eraser", 
             "Drag line", 
             "Triangle", 

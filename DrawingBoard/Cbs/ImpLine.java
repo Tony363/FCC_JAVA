@@ -16,13 +16,15 @@ public class ImpLine implements NetJavaShape{
         this.y2=y2;
     }
     public void draw() {
+        Graphics2D g2d = (Graphics2D)g;
+        g2d.setStroke(new BasicStroke(1));
         g.setColor(c);
         g.drawLine(x1, y1, x2, y2);
     }
     public void Erase(){
         Graphics2D g2d = (Graphics2D)g;
         g2d.setStroke(new BasicStroke(10));
-        g2d.setColor(Color.WHITE);
-        g2d.drawLine(x1,y1,x2,y2);
+        g.setColor(Color.WHITE);
+        g.drawLine(x1,y1,x2,y2);
     }
 }
