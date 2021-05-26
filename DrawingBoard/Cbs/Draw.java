@@ -24,6 +24,8 @@ public class Draw extends JFrame {
     //Save a collection of graphic objects
     private List<NetJavaShape> shapesArray = new ArrayList<NetJavaShape>();
     //  Interface initialization method
+
+    public Draw(){this.dl = new DrawListener(this);}
     public void showUI() {
         setTitle("Draw a picture");//Form name
         setSize(1200, 900);//Window size
@@ -65,11 +67,9 @@ public class Draw extends JFrame {
             "Multi-line",
             " character"
         };
-        JPanel jp1=new JPanel(new GridLayout(15, 2,10,10));//Used to save graphic buttons, use grid layout
+        JPanel jp1 = new JPanel(new GridLayout(15, 2,10,10));//Used to save graphic buttons, use grid layout
         jp1.setPreferredSize(new Dimension(200, 800));
         
-        //Instantiate the DrawListener object
-        dl=new DrawListener();
         //Loop to add buttons to the button panel
         for (int i = 0; i < buttonName.length; i++) {
             JButton jbutton = new JButton(buttonName[i]);

@@ -26,13 +26,10 @@ public class DrawListener implements ActionListener, MouseListener,
         private NetJavaShape shape;
         private Draw panel;
 
-        public DrawListener(){};
-        public DrawListener(Object o){
-            if (o instanceof Draw){
-                Draw p = (Draw)o;
-                this.panel = p;
-            }
-        }
+        public DrawListener(Draw panel){
+            this.panel = panel;
+        };
+       
         //Get the collection in the draw class
         public List<NetJavaShape> getShapesArray() {
             return shapesArray;
@@ -76,8 +73,15 @@ public class DrawListener implements ActionListener, MouseListener,
                 this.shape.Erase();
                 this.shapesArray.add(this.shape);
                 this.x1 = x;
-                this.y1 = y;
-            }
+                this.y1 = y;}
+            // }else if ("REraser".equals(this.str)){
+            //     this.x1 = x;
+            //     this.y1 = y;
+            //     this.g.setColor(Color.BLUE);
+                
+            //     // this.panel.repaint();
+                
+            // }
         }
 
         @Override
@@ -119,6 +123,7 @@ public class DrawListener implements ActionListener, MouseListener,
                 //Save the graphics in the collection
                 this.shapesArray.add(shape);
             }else if ("REraser".equals(str)){
+                // this.panel.draw(g);
                 int px = Math.min(this.x1,this.x2);
                 int py = Math.min(this.y1,this.y2);
                 int pw = Math.abs(this.x1-this.x2);
