@@ -1,6 +1,6 @@
 package IIT.OOP;
-
-public class Student {
+import java.io.Serializable;
+public class Student implements Serializable {
 	private String ID;
 	private String name;
 	private String dept;
