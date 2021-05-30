@@ -5,6 +5,5 @@ public class Main {
         Draw canvas = new Draw();
         DrawListener listener = new DrawListener(canvas);
         canvas.showUI();
-
     }
 }

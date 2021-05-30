@@ -1,5 +1,5 @@
 package IIT.OOP;
-public abstract class Book{
+public abstract class Book implements BookInterface{
     private String ISBN;
     private int numWords;
     private String title;
@@ -26,8 +26,8 @@ public abstract class Book{
         }
         return false;
     }
-    protected boolean isEqual(String s1,String s2){
+    static boolean isEqual(String s1,String s2){
         return (s1==null && s2==null) || (s1!=null && s1.equals(s2));
     }
-    public abstract String getShipmentInfo();
+    // public abstract String getShipmentInfo();
 }

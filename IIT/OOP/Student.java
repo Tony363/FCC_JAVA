@@ -1,5 +1,7 @@
 package IIT.OOP;
 import java.io.Serializable;
+
+// serializable just build tool not efficient,
 public class Student implements Serializable {
 	private String ID;
 	private String name;

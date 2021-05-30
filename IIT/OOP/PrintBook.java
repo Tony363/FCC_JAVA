@@ -1,6 +1,6 @@
 package IIT.OOP;
 
-public class PrintBook extends Book{
+public class PrintBook extends Book implements PrintBookInterface{
     private String mailingAddress;
     public String getMailingAddress(){return this.mailingAddress;}
     public void setMailingAddress(String addr){this.mailingAddress = addr;}
