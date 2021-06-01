@@ -9,9 +9,7 @@ public class EBook extends Book implements EBookInterface{
         super(isbn,n_words,title);
         this.setDownloadURL(download);
     }
-    // public void setTitle(String book){
-    //     System.out.println(book);
-    // }
+  
     @Override 
     public String toString(){
         return String.format("%s %d %s %s",

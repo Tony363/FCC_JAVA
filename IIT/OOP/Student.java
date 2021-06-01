@@ -3,22 +3,36 @@ import java.io.Serializable;
 
 // serializable just build tool not efficient,
 public class Student implements Serializable {
-	private String ID;
-	private String name;
-	private String dept;
+	private String ID = "Default ID";
+	private String name = "Default Name";
+	private String dept = "Default Department";
 	
 	public String getID() { return this.ID; }
-	public void setID(String ID) { this.ID = ID; }
+	public void setID(String ID)throws InvalidParameterException {
+		if (isNonEmpty(ID)){
+			this.ID = ID;
+		}else{
+			throw new InvalidParameterException("Student ID should be non-empty");
+		}
+	}
 	public String getName() { return this.name; }
 	public void setName(String name) { this.name = name; }
 	public String getDept() { return this.dept; }
 	public void setDept(String dept) { this.dept = dept; }
 	
+	protected boolean isNonEmpty(String s){
+		return s!=null && s.length()!=0;
+	}
+
 	public Student() {
-		// all null
+		// nothing else
 	}
 	public Student(String ID, String name, String dept) {
-		this.setID(ID);
+		try{
+			this.setID(ID); 
+		}catch(InvalidParameterException pe){
+			System.err.println("Invalid ID, fallback to default value.");
+		}
 		this.setName(name);
 		this.setDept(dept);
 	}
