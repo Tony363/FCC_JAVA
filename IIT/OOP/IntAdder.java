@@ -1,13 +1,21 @@
 package IIT.OOP;
 
 
-class GenericAdder<T>{
+class GenericAdder<T extends Number>{
     private T[] values;
     GenericAdder(T[] array){this.values=array;}
     public double addAll(){
         double total = 0;
         for (T v : this.values){
-            total += Double.valueOf(v.toString());
+            total += v.doubleValue();
+        }
+        return total;
+    }
+
+    public static <V extends Number> double addAll(V[] values){
+        double total = 0;
+        for (V v : values){
+            total += v.doubleValue();
         }
         return total;
     }
