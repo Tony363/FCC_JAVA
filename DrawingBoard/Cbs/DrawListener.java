@@ -58,7 +58,7 @@ public class DrawListener implements ActionListener, MouseListener,
 
             int x = e.getX(),y = e.getY();
             //Method of drawing a curve
-            if  ("Draw a curve".equals(this.str)) {
+            if  ("Draw custom line".equals(this.str)) {
                 this.g.setColor(color);
                 //When instantiating the object, the curve is also drawn in a straight line, so it is different to create a new curve class
                 this.shape = new ImpLine(this.g,x,y,this.x1,this.y1,this.color);
@@ -75,11 +75,18 @@ public class DrawListener implements ActionListener, MouseListener,
                 this.x1 = x;
                 this.y1 = y;}
             // }else if ("REraser".equals(this.str)){
+                
+            //     this.g.setColor(Color.BLUE);
+            //     this.shape = new DrawRect();
+            //     this.shapesArray.add(this.shape);
+
+            //     this.shape.setEndPoint(x,y);
+            //     this.panel.repaint();
+
+            //     this.shape.draw();
             //     this.x1 = x;
             //     this.y1 = y;
-            //     this.g.setColor(Color.BLUE);
                 
-            //     // this.panel.repaint();
                 
             // }
         }
@@ -123,13 +130,14 @@ public class DrawListener implements ActionListener, MouseListener,
                 //Save the graphics in the collection
                 this.shapesArray.add(shape);
             }else if ("REraser".equals(str)){
-                // this.panel.draw(g);
-                int px = Math.min(this.x1,this.x2);
-                int py = Math.min(this.y1,this.y2);
-                int pw = Math.abs(this.x1-this.x2);
-                int ph = Math.abs(this.y1-this.y2);
-                this.g.setColor(Color.white);
-                this.g.fillRect(px,py,pw,ph);
+                // this.shape.setEndPoint(this.x2,this.y2);
+                // this.shape.draw();
+                // int px = Math.min(this.x1,this.x2);
+                // int py = Math.min(this.y1,this.y2);
+                // int pw = Math.abs(this.x1-this.x2);
+                // int ph = Math.abs(this.y1-this.y2);
+                // this.g.setColor(Color.white);
+                // this.g.fillRect(px,py,pw,ph);
             }
         }
 

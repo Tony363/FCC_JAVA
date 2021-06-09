@@ -28,7 +28,7 @@ public class Draw extends JFrame {
     public Draw(){this.dl = new DrawListener(this);}
     public void showUI() {
         setTitle("Draw a picture");//Form name
-        setSize(1200, 900);//Window size
+        setSize(1900, 900);//Window size
         setDefaultCloseOperation(3);
         setLocationRelativeTo(null);//Center the form
         FlowLayout layout = new FlowLayout(FlowLayout.LEFT);//Flow layout left aligned
@@ -39,7 +39,7 @@ public class Draw extends JFrame {
         String buttonName[] = {
             "Draw a straight line", 
             "Draw an ellipse", 
-            "Draw a curve", 
+            "Draw custom line", 
             "REraser", 
             "Eraser", 
             "Drag line", 
@@ -68,7 +68,7 @@ public class Draw extends JFrame {
             " character"
         };
         JPanel jp1 = new JPanel(new GridLayout(15, 2,10,10));//Used to save graphic buttons, use grid layout
-        jp1.setPreferredSize(new Dimension(200, 800));
+        jp1.setPreferredSize(new Dimension(300, 600));
         
         //Loop to add buttons to the button panel
         for (int i = 0; i < buttonName.length; i++) {
@@ -78,7 +78,7 @@ public class Draw extends JFrame {
         }
         
         JPanel jp2=new JPanel();//Canvas panel
-        jp2.setPreferredSize(new Dimension(970, 800));
+        jp2.setPreferredSize(new Dimension(1500, 800));
         jp2.setBackground(Color.WHITE);
         
 
