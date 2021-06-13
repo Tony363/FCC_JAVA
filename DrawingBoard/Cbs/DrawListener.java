@@ -73,22 +73,20 @@ public class DrawListener implements ActionListener, MouseListener,
                 this.shape.Erase();
                 this.shapesArray.add(this.shape);
                 this.x1 = x;
-                this.y1 = y;}
-            // }else if ("REraser".equals(this.str)){
+                this.y1 = y;
+            }else if ("REraser".equals(this.str)){
                 
-            //     this.g.setColor(Color.BLUE);
-            //     this.shape = new DrawRect();
-            //     this.shapesArray.add(this.shape);
+                this.g.setColor(Color.BLUE);
+                this.shape = new DrawRect();
+                this.shape.draw();
+                this.shapesArray.add(this.shape);
+                this.shape.setEndPoint(x,y);
 
-            //     this.shape.setEndPoint(x,y);
-            //     this.panel.repaint();
+                this.x1 = x;
+                this.y1 = y; 
+            }
+            this.panel.repaint();
 
-            //     this.shape.draw();
-            //     this.x1 = x;
-            //     this.y1 = y;
-                
-                
-            // }
         }
 
         @Override

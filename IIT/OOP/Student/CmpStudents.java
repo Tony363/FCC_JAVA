@@ -1,6 +1,7 @@
-package IIT.OOP;
+package IIT.OOP.Student;
 import java.util.Arrays;
 import java.util.Comparator;
+
 public class CmpStudents{
     public static Student[] createStudentArray(){
         Student s1 = new Student("123","Name1","IIT");
@@ -14,6 +15,7 @@ public class CmpStudents{
         try{
             Student[] sa = createStudentArray();
             StudentComparator c = new StudentComparator();
+            //https://docs.oracle.com/javase/7/docs/api/java/util/Arrays.html#sort(T[],%20java.util.Comparator)
             Arrays.sort(sa,c);
             for (Student s: sa){
                 System.out.println(s.getID());

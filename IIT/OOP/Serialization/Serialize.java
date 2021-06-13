@@ -1,20 +1,9 @@
 package IIT.OOP;
+
 import java.io.Serializable;
 import java.io.IOException;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
-
-class Employee implements Serializable{
-    public String name;
-    public String address;
-    public transient int SSN;
-    public int number;
-    
-    public Employee(){};
-    public void mailCheck() {
-        System.out.println("Mailing a check to " + name + " " + address);
-    }
-}
 
 public class Serialize{
     public static void main(String[] args){

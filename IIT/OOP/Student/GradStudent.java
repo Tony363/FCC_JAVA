@@ -1,4 +1,4 @@
-package IIT.OOP;
+package IIT.OOP.Student;
 
 public class GradStudent extends Student{
     private String BSDegree;

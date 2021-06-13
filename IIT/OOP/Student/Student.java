@@ -1,5 +1,6 @@
-package IIT.OOP;
+package IIT.OOP.Student;
 import java.io.Serializable;
+import java.lang.reflect.Field;
 
 // serializable just build tool not efficient,
 public class Student implements Serializable {
@@ -16,9 +17,21 @@ public class Student implements Serializable {
 		}
 	}
 	public String getName() { return this.name; }
-	public void setName(String name) { this.name = name; }
+	public void setName(String name) throws InvalidParameterException {
+		if (isNonEmpty(name)){
+			this.name = name;
+		}else{
+			throw new InvalidParameterException("Student name should be non-empty");
+		}
+	}
 	public String getDept() { return this.dept; }
-	public void setDept(String dept) { this.dept = dept; }
+	public void setDept(String dept) throws InvalidParameterException{
+		if (isNonEmpty(dept)){
+			this.dept = dept;
+		}else{
+			throw new InvalidParameterException("Student Department should be non-empty");
+		}
+	}
 	
 	protected boolean isNonEmpty(String s){
 		return s!=null && s.length()!=0;
@@ -26,17 +39,28 @@ public class Student implements Serializable {
 
 	public Student() {
 		// nothing else
+		try{
+			this.checkNull();
+		}catch(InvalidParameterException e){
+			e.printStackTrace();
+		}
 	}
 	public Student(String ID, String name, String dept) {
 		try{
 			this.setID(ID); 
+			this.setName(name);
+			this.setDept(dept);
 		}catch(InvalidParameterException pe){
-			System.err.println("Invalid ID, fallback to default value.");
+			System.err.println("Invalid field members, fallback to default value.");
 		}
-		this.setName(name);
-		this.setDept(dept);
 	}
-	
+	public void checkNull() throws InvalidParameterException{
+		for (Field f : getClass().getDeclaredFields()){
+			if (!this.isNonEmpty((String.valueOf(f)))){
+				throw new InvalidParameterException("Fields in Student class is empty");
+			}
+		}	
+	}
 	@Override
 	public String toString() {
 		return String.format("%s %s (%s)",
@@ -62,4 +86,5 @@ public class Student implements Serializable {
 			&& isEqual(s1.getName(), s2.getName())
 			&& isEqual(s1.getDept(), s2.getDept());
 	}
+	
 }

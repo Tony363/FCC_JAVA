@@ -1,4 +1,4 @@
-package IIT.OOP;
+package IIT.OOP.Student;
 
 public class InvalidParameterException extends Exception{
     public InvalidParameterException(){
@@ -7,5 +7,4 @@ public class InvalidParameterException extends Exception{
     public InvalidParameterException(String msg){
         super(msg);
     }
-    
 }

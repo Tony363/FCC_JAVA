@@ -14,6 +14,7 @@ public class CmpStudents1{
     public static void main(String[] args){
         try{
             Student[] sa = createStudentArray();
+
             Comparator<Student> c = new Comparator<Student>(){
                 public int compare(Student s1, Student s2){
                     if (s1==null && s2 == null){return 0;}
@@ -27,8 +28,10 @@ public class CmpStudents1{
                     if (o == null){return false;}
                     return this.getClass()==o.getClass();
                 }
-            };//anonmynous class: study this for GUI widget using anonmynous class
+            };
+            //anonmynous class: study this for GUI widget using anonmynous class
             // don't use default method unless reengineering class library
+            
             Arrays.sort(sa,c);
             for (Student s: sa){
                 System.out.println(s.getID());

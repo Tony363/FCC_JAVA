@@ -1,7 +1,10 @@
-package IIT.OOP;
+package IIT.OOP.Student;
 
 public class TestStudent{
     public static void main(String[] args){
+        //test null member attributes
+        Student test = new Student("","","");
+        
         Student s1 = new Student("123","John","IIT-SE");
         Student s2 = new Student("321","Mary","IIT-AI");
         Student s3 = new Student("123","John","IIT-SE");
