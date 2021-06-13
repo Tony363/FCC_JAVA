@@ -60,7 +60,6 @@ public class MyDatePC {
     }
     void setDay(int day) {
 		this.day = day;
-			return true;
     }
 
     public boolean equals(Object o) {
