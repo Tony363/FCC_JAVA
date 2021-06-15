@@ -38,14 +38,19 @@ public class PeriodicMessageThread extends Thread {
     // required to integrate class to default java framework
     @Override
     public String toString(){
-
+        return String.format("%s %d",this.getMessage(),this.getInterval());
     }
     @Override
     public boolean equals(Object o){
-
+        if (o instanceof PeriodicMessageThread){
+            PeriodicMessageThread thread = (PeriodicMessageThread)o;
+            return thread.getInterval() == this.getIntervals()
+                && thread.getMessage() == this.getMessage();
+        }
+        return false;
     }
     @Override
     public int hashCode(){
-
+        return 33 * Integer.valueOf(this.getInterval()).hashCode() * this.getMessage().hashCode();
     }
 }
