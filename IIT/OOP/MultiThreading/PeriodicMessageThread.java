@@ -1,5 +1,6 @@
 package IIT.OOP;
-// import java.
+
+// can revise to not use daemon thread
 public class PeriodicMessageThread extends Thread {
     private int interval = 1000;
     private String message = "Default Message";
@@ -26,7 +27,7 @@ public class PeriodicMessageThread extends Thread {
         this.setMessage(message);
     }
     public void run(){
-        while(true){
+        while(true){ // can change boolean for loop design
             System.out.println(this.getMessage());
             try{
                 Thread.sleep(this.getInterval());
@@ -44,7 +45,7 @@ public class PeriodicMessageThread extends Thread {
     public boolean equals(Object o){
         if (o instanceof PeriodicMessageThread){
             PeriodicMessageThread thread = (PeriodicMessageThread)o;
-            return thread.getInterval() == this.getIntervals()
+            return thread.getInterval() == this.getInterval()
                 && thread.getMessage() == this.getMessage();
         }
         return false;

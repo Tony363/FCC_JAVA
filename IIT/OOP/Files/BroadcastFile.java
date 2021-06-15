@@ -9,37 +9,69 @@ import java.io.OutputStreamWriter;
 import java.io.OutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.CharArrayWriter;
+import java.io.PrintWriter;
 
-public class BroadcastFile{
+public class BroadcastFile<T>{
+    private OutputStream out = null;
+    private List<T> writers = null;
+    private String message = null;
 
-    public static void Broadcaster(String message,List<Writer> writers){
-        for(Writer writer:writers){
+    public void setWriters(List<T> writers){
+        for (T writer : writers){
+            if (writer instanceof Writer){
+                continue;
+            }else{
+                throw new IllegalStateException("List of writers not writer object");
+            }
+        }   
+        this.writers = writers;
+    }
+    public List<T> getWriters(){return this.writers;}
+    public void setMessage(String message){
+        if (message != null || message.length() != 0){
+            this.message = message;
+        }else{
+            throw new IllegalArgumentException("message is null");
+        }
+    }
+    public String getMessage(){return this.message;}
+    public BroadcastFile(){}
+    public BroadcastFile(List<T> writers,String message){
+       this.setWriters(writers);
+       this.setMessage(message);
+    }
+    public void broadcast(){
+        for(T writer:this.getWriters()){
+            Writer w = (Writer)writer;
             try{
-                writer.write(message);
+                w.write(this.getMessage());
             }catch (IOException e){
                 e.printStackTrace();
             }
         }
     }
     public static void main(String[] args){
-        OutputStream out = null;
-        Writer o1 = null;
-        Writer o2 = null;
-        Writer o3 = null;
-        Writer o4 = null;
+        FileWriter o1 = null;
+        BufferedWriter o2 = null;
+        PrintWriter o3 = null;
+        OutputStreamWriter o4 = null;
+        CharArrayWriter o5 = null;
+        StringWriter o6 = null;
 
         try{
-            out = new FileOutputStream("./txt/OutputStreamWriter.txt");
             o1 = new FileWriter("./txt/fileWriter.txt");
             o2 = new BufferedWriter(o1);
-            o3 = new StringWriter();
-            o4 = new OutputStreamWriter(out);
+            o3 = new PrintWriter(o2);
+            o4 = new OutputStreamWriter(System.out);
+            o5 = new CharArrayWriter(); 
+            o6 = new StringWriter();
         }catch(IOException e){
             e.printStackTrace();
         }
-        
-        List<Writer> writers = Arrays.asList(o1,o2,o3,o4);
+        List<Writer> writers = Arrays.asList(o1,o2,o3,o4,o5,o6);
         String message = String.valueOf("messages");
-        Broadcaster(message,writers);
+        BroadcastFile broadcaster = new BroadcastFile(writers,message);
+        broadcaster.broadcast();
     }
 }
