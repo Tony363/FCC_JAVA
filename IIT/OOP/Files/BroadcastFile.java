@@ -12,13 +12,13 @@ import java.io.IOException;
 import java.io.CharArrayWriter;
 import java.io.PrintWriter;
 
-public class BroadcastFile<T>{
+public class BroadcastFile{
     private OutputStream out = null;
-    private List<T> writers = null;
+    private List<Writer> writers = null;
     private String message = null;
 
-    public void setWriters(List<T> writers){
-        for (T writer : writers){
+    public void setWriters(List<Writer> writers){
+        for (Writer writer : writers){
             if (writer instanceof Writer){
                 continue;
             }else{
@@ -27,7 +27,7 @@ public class BroadcastFile<T>{
         }   
         this.writers = writers;
     }
-    public List<T> getWriters(){return this.writers;}
+    public List<Writer> getWriters(){return this.writers;}
     public void setMessage(String message){
         if (message != null || message.length() != 0){
             this.message = message;
@@ -37,20 +37,21 @@ public class BroadcastFile<T>{
     }
     public String getMessage(){return this.message;}
     public BroadcastFile(){}
-    public BroadcastFile(List<T> writers,String message){
+    public BroadcastFile(List<Writer> writers,String message){
        this.setWriters(writers);
        this.setMessage(message);
     }
     public void broadcast(){
-        for(T writer:this.getWriters()){
-            Writer w = (Writer)writer;
+        for(Writer writer:this.getWriters()){
             try{
-                w.write(this.getMessage());
+                writer.write(this.getMessage());
+                writer.flush();
             }catch (IOException e){
                 e.printStackTrace();
             }
         }
     }
+
     public static void main(String[] args){
         FileWriter o1 = null;
         BufferedWriter o2 = null;
@@ -66,12 +67,14 @@ public class BroadcastFile<T>{
             o4 = new OutputStreamWriter(System.out);
             o5 = new CharArrayWriter(); 
             o6 = new StringWriter();
+        
+            List<Writer> writers = Arrays.asList(o1,o2,o3,o4,o5,o6);
+            String message = String.valueOf("messages");
+
+            BroadcastFile broadcaster = new BroadcastFile(writers,message);
+            broadcaster.broadcast();
         }catch(IOException e){
             e.printStackTrace();
-        }
-        List<Writer> writers = Arrays.asList(o1,o2,o3,o4,o5,o6);
-        String message = String.valueOf("messages");
-        BroadcastFile broadcaster = new BroadcastFile(writers,message);
-        broadcaster.broadcast();
+        } 
     }
 }

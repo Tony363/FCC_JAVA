@@ -1,4 +1,4 @@
-package IIT.OOP;
+package IIT.OOP.MultiThreading;
 public class TestPeriodicMessages{
     public static void main(String[] args){
         try{

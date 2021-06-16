@@ -1,4 +1,4 @@
-package IIT.OOP;
+package IIT.OOP.MultiThreading;
 
 // can revise to not use daemon thread
 public class PeriodicMessageThread extends Thread {
