@@ -1,5 +1,6 @@
 {
     "java.project.sourcePaths": [
-        "src/sand/box"
+        "src/sand/box",
+        "IIT/OOP/MultiThreading"
     ]
 }

@@ -1,4 +1,4 @@
-package IIT.OOP;
+package IIT.OOP.MultiThreading;
 
 public class Periodic3Messages implements Runnable{
     private String message = "Default Message";
