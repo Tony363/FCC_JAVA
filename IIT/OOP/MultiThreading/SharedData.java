@@ -34,6 +34,8 @@ class Box{
 class Producer extends PeriodicMessageThread{ // heart beat task 1
     protected Box queue = null;
     private int running = 0;
+    void setLogs(int logs){this.running = logs;}
+    int getLogs(){return this.running;}
     void setQueue(Box queue){
         if (queue != null){
             this.queue = queue;
@@ -45,25 +47,26 @@ class Producer extends PeriodicMessageThread{ // heart beat task 1
 
     // how to repeated produce heartbeat message
     public Producer(){}
-    public Producer(int interval, String heartbeat,Box queue){
+    public Producer(int interval, String heartbeat,Box queue,int logs){
         super(interval,heartbeat);
         this.setQueue(queue);
+        this.setLogs(logs);
     }
     // use thread to run over object
     @Override
     public void run(){
-        while(this.running < 5){
+        while(this.running!=0){
             try{
                 // create box, put string in to box and get string of box
-                // System.out.printf("Storing message %s to queue\n", super.getMessage());
+                System.out.printf("Storing message %s to queue\n", super.getMessage());
                 this.queue.addQueue(super.getMessage()+this.running);
-                // System.out.println(this.queue.pop());
                 Thread.sleep(super.getInterval());
             }catch(Exception e){
                 System.err.println("sleep() is interrupted");
             }
-            this.running += 1;
+            this.running -= 1;
         }
+        return;
     }
 }
 
@@ -72,8 +75,9 @@ class Producer extends PeriodicMessageThread{ // heart beat task 1
 class Consumer extends Thread{ // logging message task 2
     private Writer w = null;
     protected Box queue = null;
-    private int logging = 0;
-
+    private boolean logging = false;
+    void setLogging(){this.logging=!this.logging;}
+    boolean getLogging(){return this.logging;}
     void setWriter(Writer w){
         if (w != null){
             this.w = w;
@@ -96,20 +100,22 @@ class Consumer extends Thread{ // logging message task 2
     public Consumer(Box queue,Writer w){
         this.setQueue(queue);
         this.setWriter(w);
+        this.setLogging();
     }
     public void run(){
-        while(this.logging < 5){
+        while(this.getLogging()){
             try{
-                System.out.println("logging from queue: "+ this.logging);
+                System.out.println("logging from queue");
                 String temp = this.queue.pop(); 
                 this.w.write(temp+"\n");
                 this.w.flush();
             }catch (IOException io){
                 io.printStackTrace();
+                this.setLogging();
             }catch (IndexOutOfBoundsException e){
                 e.printStackTrace();
+                this.setLogging();
             }
-            this.logging += 1;
         }
     }
 }
@@ -121,12 +127,11 @@ public class SharedData{
     public static void main(String[] args){
         // set up box here
         Box queue = new Box();
-    
         try{// time dependant to verify duplicate messages
             Writer w1 = new FileWriter("./txt/logging1.txt");
             Writer w2 = new FileWriter("./txt/logging2.txt");
-            Producer t1 = new Producer(1000,"Heartbeat 1",queue);
-            Producer t2 = new Producer(2000,"WHY NO WORK!",queue);
+            Producer t1 = new Producer(1,"Heartbeat1",queue,1000);
+            Producer t2 = new Producer(1,"Heartbeat2!",queue,1000);
             Consumer c1 = new Consumer(queue,w1);
             Consumer c2 = new Consumer(queue,w2);
             t1.start();
