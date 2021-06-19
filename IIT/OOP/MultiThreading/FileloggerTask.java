@@ -13,17 +13,15 @@ public class FileloggerTask implements Runnable{
         try{
             while(true){
                 String msg = this.msgbox.recvMsg();
-                System.out.println(msg);
+                // System.out.println(msg);
                 writer.write(msg);
                 writer.write("\n");
                 writer.flush();
             }
         }catch(InterruptedException e){
             e.printStackTrace();
-            System.out.println("wtf1");
         }catch(IOException io){
             io.printStackTrace();
-            System.out.println("wtf2");
         }
     }   
 }

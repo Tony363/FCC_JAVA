@@ -16,7 +16,6 @@ public class MsgBox{
             notify();
         }catch (InterruptedException ex){
             ex.printStackTrace();
-            System.out.println("wtf");
         }
     }
     public synchronized String recvMsg() throws InterruptedException{

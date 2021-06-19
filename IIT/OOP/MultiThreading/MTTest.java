@@ -7,8 +7,8 @@ public class MTTest{
             HeartbeatTask ht1 = new HeartbeatTask(msgbox);
             HeartbeatTask ht2 = new HeartbeatTask(msgbox);
 
-            FileloggerTask logger1 = new FileloggerTask(msgbox,"log_1.txt");
-            FileloggerTask logger2 = new FileloggerTask(msgbox,"log_2.txt");
+            FileloggerTask logger1 = new FileloggerTask(msgbox,"./txt/runnableLog1.txt");
+            FileloggerTask logger2 = new FileloggerTask(msgbox,"./txt/runnableLog2.txt");
 
             Thread heartbeat_th1 = new Thread(ht1);
             Thread heartbeat_th2= new Thread(ht2);
