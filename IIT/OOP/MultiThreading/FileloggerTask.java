@@ -20,8 +20,10 @@ public class FileloggerTask implements Runnable{
             }
         }catch(InterruptedException e){
             e.printStackTrace();
+            System.out.println("wtf1");
         }catch(IOException io){
             io.printStackTrace();
+            System.out.println("wtf2");
         }
     }   
 }

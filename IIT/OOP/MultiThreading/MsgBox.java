@@ -1,28 +1,30 @@
 package IIT.OOP.MultiThreading;
+import java.util.List;
+import java.util.ArrayList;
+import java.lang.InterruptedException;
 
-public class MTTest{
-    public static void main(String[] args){
+public class MsgBox{
+    private List<String> queue = new ArrayList<String>();
+    public String getMsg() {return this.queue.remove(0);}
+    protected void setMsg(String msg){this.queue.add(msg);}
+    public MsgBox(){};
+    public synchronized void sendMsg(String msg){
         try{
-            MsgBox msgbox = new MsgBox();
-            HeartbeatTask ht1 = new HeartbeatTask(msgbox);
-            HeartbeatTask ht2 = new HeartbeatTask(msgbox);
-
-            FileloggerTask logger1 = new FileloggerTask(msgbox,"log_1.txt");
-            FileloggerTask logger2 = new FileloggerTask(msgbox,"log_2.txt");
-
-            Thread heartbeat_th1 = new Thread(ht1);
-            Thread heartbeat_th2= new Thread(ht2);
-
-            Thread logger_th1 = new Thread(logger1);
-            Thread logger_th2 = new Thread(logger2);
-
-            heartbeat_th1.start();
-            heartbeat_th2.start();
-            logger_th1.start();
-            logger_th2.start();
-
-        }catch(Exception e){
-            e.printStackTrace();
+            while (msg==null&&msg.length()==0){wait();}
+            // System.out.println(msg);
+            this.setMsg(msg);
+            notify();
+        }catch (InterruptedException ex){
+            ex.printStackTrace();
+            System.out.println("wtf");
         }
     }
+    public synchronized String recvMsg() throws InterruptedException{
+        while (this.queue.size()==0){wait();}
+        String msg = this.getMsg();
+        // System.out.println(msg);
+        // this.setMsg(null);
+        notify();
+        return msg;
+        }
 }
